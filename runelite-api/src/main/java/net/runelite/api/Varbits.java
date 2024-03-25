@@ -886,4 +886,12 @@ public final class Varbits
 	 * 1 = active
 	 */
 	public static final int SPELLBOOK_SWAP = 3617;
+
+	/**
+	 * The amount of Curse of the Moons stacks received when fighting the Blue Moon or Eclipse Moon.
+	 * The varbit value remains 0 when fighting the Blood Moon.
+	 * When fighting the Blue Moon, the player's joints will lock up at 18 stacks, which causes their next attack to be
+	 * canceled and 18 stacks to be removed.
+	 */
+	public static final int CURSE_OF_THE_MOONS = 9853;
 }
