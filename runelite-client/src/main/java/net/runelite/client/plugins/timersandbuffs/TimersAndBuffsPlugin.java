@@ -582,6 +582,11 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarTimer(GOD_WARS_ALTAR, event.getValue(), i -> i * 100);
 		}
 
+		if (event.getVarbitId() == Varbits.COLOSSEUM_DOOM && config.showColosseumDoom())
+		{
+			updateVarCounter(COLOSSEUM_DOOM, event.getValue());
+		}
+
 		if (event.getVarbitId() == Varbits.CURSE_OF_THE_MOONS && config.showCurseOfTheMoons())
 		{
 			final int regionID = WorldPoint.fromLocal(client, client.getLocalPlayer().getLocalLocation()).getRegionID();
@@ -779,6 +784,11 @@ public class TimersAndBuffsPlugin extends Plugin
 		if (!config.showAbyssalSireStun())
 		{
 			removeGameTimer(ABYSSAL_SIRE_STUN);
+		}
+
+		if (!config.showColosseumDoom())
+		{
+			removeVarCounter(COLOSSEUM_DOOM);
 		}
 
 		if (!config.showCurseOfTheMoons())
@@ -1084,6 +1094,8 @@ public class TimersAndBuffsPlugin extends Plugin
 					config.tzhaarStartTime(null);
 					config.tzhaarLastTime(null);
 				}
+				// Varbits.COLOSSEUM_DOOM is not set to 0 when teleporting out of the Colosseum.
+				removeVarCounter(COLOSSEUM_DOOM);
 				break;
 			case LOGIN_SCREEN:
 				// fall through
