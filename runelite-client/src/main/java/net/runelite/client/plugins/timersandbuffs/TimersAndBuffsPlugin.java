@@ -146,6 +146,7 @@ public class TimersAndBuffsPlugin extends Plugin
 	private ElapsedTimer tzhaarTimer;
 
 	private final Map<GameCounter, BuffCounter> varCounters = new EnumMap<>(GameCounter.class);
+	private static final int COLOSSEUM_REGION_ID = 7216;
 	private static final int ECLIPSE_MOON_REGION_ID = 6038;
 
 	@Inject
@@ -582,6 +583,11 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarTimer(GOD_WARS_ALTAR, event.getValue(), i -> i * 100);
 		}
 
+		if (event.getVarbitId() == Varbits.COLOSSEUM_DOOM && config.showColosseumDoom())
+		{
+			updateVarCounter(COLOSSEUM_DOOM, event.getValue());
+		}
+
 		if (event.getVarbitId() == Varbits.CURSE_OF_THE_MOONS && config.showCurseOfTheMoons())
 		{
 			final int regionID = WorldPoint.fromLocal(client, client.getLocalPlayer().getLocalLocation()).getRegionID();
@@ -779,6 +785,11 @@ public class TimersAndBuffsPlugin extends Plugin
 		if (!config.showAbyssalSireStun())
 		{
 			removeGameTimer(ABYSSAL_SIRE_STUN);
+		}
+
+		if (!config.showColosseumDoom())
+		{
+			removeVarCounter(COLOSSEUM_DOOM);
 		}
 
 		if (!config.showCurseOfTheMoons())
@@ -1067,6 +1078,13 @@ public class TimersAndBuffsPlugin extends Plugin
 				removeGameTimer(freezeTimer.getTimer());
 				freezeTimer = null;
 			}
+		}
+
+		final int regionID = WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID();
+		if (regionID != COLOSSEUM_REGION_ID)
+		{
+			// Varbits.COLOSSEUM_DOOM is not set to 0 when teleporting out of the colosseum
+			removeVarCounter(COLOSSEUM_DOOM);
 		}
 
 		lastPoint = currentWorldPoint;

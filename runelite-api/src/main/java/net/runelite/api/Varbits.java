@@ -894,4 +894,9 @@ public final class Varbits
 	 * canceled and 18 stacks to be removed.
 	 */
 	public static final int CURSE_OF_THE_MOONS = 9853;
+
+	/**
+	 * The amount of Doom stacks received in the Fortis Colosseum.
+	 */
+	public static final int COLOSSEUM_DOOM = 9801;
 }
