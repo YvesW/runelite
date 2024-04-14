@@ -48,13 +48,7 @@ class BuffCounter extends Counter
 	@Override
 	public Color getTextColor()
 	{
-		switch (gameCounter.getColorBoundaryType())
-		{
-			case LESS_THAN_EQUAL_TO:
-				return getCount() <= gameCounter.getBoundary() ? gameCounter.getColor() : Color.WHITE;
-			case GREATER_THAN_EQUAL_TO:
-				return getCount() >= gameCounter.getBoundary() ? gameCounter.getColor() : Color.WHITE;
-		}
-		return gameCounter.getColor();
+		// How do I get the correct buffCounter here?
+		return gameCounter.getColorBoundaryType().shouldRecolor.test(buffCounter) ? gameCounter.getColor() : Color.WHITE;
 	}
 }

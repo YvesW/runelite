@@ -25,6 +25,7 @@
 package net.runelite.client.plugins.timersandbuffs;
 
 import java.awt.Color;
+import java.util.function.Predicate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,10 +53,13 @@ enum GameCounter
 		this(imageId, idType, description, ColorBoundaryType.NO_BOUNDARY, Color.WHITE, 0);
 	}
 
+	@AllArgsConstructor
 	enum ColorBoundaryType
 	{
-		GREATER_THAN_EQUAL_TO,
-		LESS_THAN_EQUAL_TO,
-		NO_BOUNDARY
+		GREATER_THAN_EQUAL_TO(buffCounter -> buffCounter.getCount() >= buffCounter.getGameCounter().getBoundary()),
+		LESS_THAN_EQUAL_TO(buffCounter -> buffCounter.getCount() <= buffCounter.getGameCounter().getBoundary()),
+		NO_BOUNDARY(buffCounter -> false);
+
+		final Predicate<BuffCounter> shouldRecolor;
 	}
 }
