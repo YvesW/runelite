@@ -54,6 +54,7 @@ import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
+import net.runelite.api.SpriteID;
 import net.runelite.api.VarPlayer;
 import static net.runelite.api.VarPlayer.LAST_HOME_TELEPORT;
 import static net.runelite.api.VarPlayer.LAST_MINIGAME_TELEPORT;
@@ -107,6 +108,8 @@ public class TimersAndBuffsPlugin extends Plugin
 	private static final String SHADOW_VEIL_MESSAGE = ">Your thieving abilities have been enhanced.</col>";
 	private static final String RESURRECT_THRALL_MESSAGE_START = ">You resurrect a ";
 	private static final String RESURRECT_THRALL_MESSAGE_END = " thrall.</col>";
+	private static final String RESURRECT_THRALL_MESSAGE_GHOSTLY = "ghostly";
+	private static final String RESURRECT_THRALL_MESSAGE_ZOMBIFIED = "zombified";
 	private static final String WARD_OF_ARCEUUS_MESSAGE = ">Your defence against Arceuus magic has been strengthened.</col>";
 	private static final String MARK_OF_DARKNESS_MESSAGE = "You have placed a Mark of Darkness upon yourself.</col>";
 	private static final String PICKPOCKET_FAILURE_MESSAGE = "You fail to pick ";
@@ -961,7 +964,17 @@ public class TimersAndBuffsPlugin extends Plugin
 				{
 					t += t / 2; // 50% boost
 				}
-				createGameTimer(RESURRECT_THRALL, Duration.of(t, RSTimeUnit.GAME_TICKS));
+
+				int spriteID = SpriteID.SPELL_RESURRECT_GREATER_SKELETON;
+				if (message.contains(RESURRECT_THRALL_MESSAGE_GHOSTLY))
+				{
+					spriteID = SpriteID.SPELL_RESURRECT_GREATER_GHOST;
+				}
+				else if (message.contains(RESURRECT_THRALL_MESSAGE_ZOMBIFIED))
+				{
+					spriteID = SpriteID.SPELL_RESURRECT_GREATER_ZOMBIE;
+				}
+				createGameTimer(RESURRECT_THRALL, Duration.of(t, RSTimeUnit.GAME_TICKS), spriteID, GameTimerImageType.SPRITE);
 			}
 		}
 
@@ -1266,16 +1279,25 @@ public class TimersAndBuffsPlugin extends Plugin
 
 	private TimerTimer createGameTimer(final GameTimer timer, Duration duration)
 	{
+		if (timer.getImageId() == null || timer.getImageType() == null)
+		{
+			throw new IllegalArgumentException("Timer without image");
+		}
+		return createGameTimer(timer, duration, timer.getImageId(), timer.getImageType());
+	}
+
+	private TimerTimer createGameTimer(final GameTimer timer, Duration duration, int imageId, GameTimerImageType gameTimerImageType)
+	{
 		removeGameTimer(timer);
 
 		TimerTimer t = new TimerTimer(timer, duration, this);
-		switch (timer.getImageType())
+		switch (gameTimerImageType)
 		{
 			case SPRITE:
-				spriteManager.getSpriteAsync(timer.getImageId(), 0, t);
+				spriteManager.getSpriteAsync(imageId, 0, t);
 				break;
 			case ITEM:
-				t.setImage(itemManager.getImage(timer.getImageId()));
+				t.setImage(itemManager.getImage(imageId));
 				break;
 		}
 		t.setTooltip(timer.getDescription());

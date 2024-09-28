@@ -79,7 +79,7 @@ enum GameTimer
 	ANTIVENOM(ItemID.ANTIVENOM4, GameTimerImageType.ITEM, "Anti-venom", false),
 	TELEBLOCK(SpriteID.SPELL_TELE_BLOCK, GameTimerImageType.SPRITE, "Teleblock", false),
 	SHADOW_VEIL(SpriteID.SPELL_SHADOW_VEIL, GameTimerImageType.SPRITE, "Shadow veil", true),
-	RESURRECT_THRALL(SpriteID.SPELL_RESURRECT_SUPERIOR_SKELETON, GameTimerImageType.SPRITE, "Resurrect thrall", false),
+	RESURRECT_THRALL("Resurrect thrall", false),
 	WARD_OF_ARCEUUS(SpriteID.SPELL_WARD_OF_ARCEUUS, GameTimerImageType.SPRITE, "Ward of Arceuus", true),
 	DEATH_CHARGE(SpriteID.SPELL_DEATH_CHARGE, GameTimerImageType.SPRITE, "Death charge", false),
 	MARK_OF_DARKNESS(SpriteID.SPELL_MARK_OF_DARKNESS, GameTimerImageType.SPRITE, "Mark of Darkness", true),
@@ -107,10 +107,12 @@ enum GameTimer
 	private final Integer graphicId;
 	private final String description;
 	private final boolean removedOnDeath;
-	private final int imageId;
+	@Nullable
+	private final Integer imageId;
+	@Nullable
 	private final GameTimerImageType imageType;
 
-	GameTimer(int imageId, GameTimerImageType idType, String description, Integer graphicId, long time, TemporalUnit unit, boolean removedOnDeath)
+	GameTimer(Integer imageId, GameTimerImageType idType, String description, Integer graphicId, long time, TemporalUnit unit, boolean removedOnDeath)
 	{
 		this.description = description;
 		this.graphicId = graphicId;
@@ -120,17 +122,17 @@ enum GameTimer
 		this.removedOnDeath = removedOnDeath;
 	}
 
-	GameTimer(int imageId, GameTimerImageType idType, String description, long time, TemporalUnit unit, boolean removeOnDeath)
+	GameTimer(Integer imageId, GameTimerImageType idType, String description, long time, TemporalUnit unit, boolean removeOnDeath)
 	{
 		this(imageId, idType, description, null, time, unit, removeOnDeath);
 	}
 
-	GameTimer(int imageId, GameTimerImageType idType, String description, long time, TemporalUnit unit)
+	GameTimer(Integer imageId, GameTimerImageType idType, String description, long time, TemporalUnit unit)
 	{
 		this(imageId, idType, description, null, time, unit, false);
 	}
 
-	GameTimer(int imageId, GameTimerImageType idType, String description, boolean removedOnDeath)
+	GameTimer(Integer imageId, GameTimerImageType idType, String description, boolean removedOnDeath)
 	{
 		this.duration = null;
 		this.graphicId = null;
@@ -138,5 +140,10 @@ enum GameTimer
 		this.removedOnDeath = removedOnDeath;
 		this.imageId = imageId;
 		this.imageType = idType;
+	}
+
+	GameTimer(String description, boolean removedOnDeath)
+	{
+		this(null, null, description, removedOnDeath);
 	}
 }
