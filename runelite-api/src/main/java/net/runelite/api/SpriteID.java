@@ -1656,9 +1656,11 @@ public final class SpriteID
 	public static final int HEALTHBAR_ORANGE_BACK_70PX = 2976;
 	public static final int HEALTHBAR_YELLOW_FRONT_70PX = 2977;
 	public static final int HEALTHBAR_YELLOW_BACK_70PX = 2978;
-	/* Unmapped: 2979, 2980 */
+	/* Unmapped: 2979 */
+	public static final int SPELL_RESURRECT_GREATER_GHOST = 2980;
 	public static final int SPELL_RESURRECT_SUPERIOR_SKELETON = 2981;
-	/* Unmapped: 2982~2983 */
+	public static final int SPELL_RESURRECT_GREATER_SKELETON = 2982;
+	/* Unmapped: 2983 */
 	public static final int SPELL_RESURRECT_GREATER_ZOMBIE = 2984;
 	/* Unmapped: 2985~2986 */
 	public static final int SPELL_RESURRECT_SUPERIOR_SKELETON_DISABLED = 2987;
