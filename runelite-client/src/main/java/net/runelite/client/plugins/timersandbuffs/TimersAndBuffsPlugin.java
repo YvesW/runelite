@@ -269,6 +269,18 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarCounter(CORRUPTION, event.getValue());
 		}
 
+		if (event.getVarbitId() == Varbits.DARK_LURE_COOLDOWN && config.showArceuusCooldown())
+		{
+			if (event.getValue() == 1)
+			{
+				createGameTimer(DARK_LURE_COOLDOWN);
+			}
+			else
+			{
+				removeGameTimer(DARK_LURE_COOLDOWN);
+			}
+		}
+
 		if (event.getVarbitId() == Varbits.RESURRECT_THRALL_COOLDOWN && config.showArceuusCooldown())
 		{
 			if (event.getValue() == 1)
@@ -782,6 +794,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(WARD_OF_ARCEUUS_COOLDOWN);
 			removeGameTimer(CORRUPTION_COOLDOWN);
 			removeGameTimer(MARK_OF_DARKNESS_COOLDOWN);
+			removeGameTimer(DARK_LURE_COOLDOWN);
 		}
 
 		if (!config.showAntiPoison())
