@@ -330,7 +330,7 @@ public class TimersAndBuffsPlugin extends Plugin
 		{
 			if (event.getValue() == 1)
 			{
-				createGameTimer(DEATH_CHARGE, Duration.of(client.getRealSkillLevel(Skill.MAGIC), RSTimeUnit.GAME_TICKS));
+				createGameTimer(DEATH_CHARGE);
 			}
 			else
 			{

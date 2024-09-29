@@ -349,7 +349,6 @@ public class TimersAndBuffsPluginTest
 	public void testDeathChargeCast()
 	{
 		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
-		when(client.getRealSkillLevel(Skill.MAGIC)).thenReturn(50);
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.DEATH_CHARGE);
 		varbitChanged.setValue(1);
@@ -359,7 +358,6 @@ public class TimersAndBuffsPluginTest
 		verify(infoBoxManager).addInfoBox(ibcaptor.capture());
 		TimerTimer infoBox = (TimerTimer) ibcaptor.getValue();
 		assertEquals(GameTimer.DEATH_CHARGE, infoBox.getTimer());
-		assertEquals(Duration.of(50, RSTimeUnit.GAME_TICKS), infoBox.getDuration());
 	}
 
 	@Test

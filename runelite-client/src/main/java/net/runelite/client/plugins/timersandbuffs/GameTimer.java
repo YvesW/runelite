@@ -81,7 +81,7 @@ enum GameTimer
 	SHADOW_VEIL(SpriteID.SPELL_SHADOW_VEIL, GameTimerImageType.SPRITE, "Shadow veil", true),
 	RESURRECT_THRALL("Resurrect thrall", false),
 	WARD_OF_ARCEUUS(SpriteID.SPELL_WARD_OF_ARCEUUS, GameTimerImageType.SPRITE, "Ward of Arceuus", true),
-	DEATH_CHARGE(SpriteID.SPELL_DEATH_CHARGE, GameTimerImageType.SPRITE, "Death charge", false),
+	DEATH_CHARGE(SpriteID.SPELL_DEATH_CHARGE, GameTimerImageType.SPRITE, "Death charge", 60, ChronoUnit.SECONDS),
 	MARK_OF_DARKNESS(SpriteID.SPELL_MARK_OF_DARKNESS, GameTimerImageType.SPRITE, "Mark of Darkness", true),
 	SHADOW_VEIL_COOLDOWN(SpriteID.SPELL_SHADOW_VEIL_DISABLED, GameTimerImageType.SPRITE, "Shadow veil cooldown", 30, ChronoUnit.SECONDS),
 	RESURRECT_THRALL_COOLDOWN(SpriteID.SPELL_RESURRECT_SUPERIOR_SKELETON_DISABLED, GameTimerImageType.SPRITE, "Resurrect thrall cooldown", 17, GAME_TICKS),
