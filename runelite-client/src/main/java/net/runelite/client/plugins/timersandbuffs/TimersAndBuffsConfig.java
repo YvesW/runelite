@@ -66,8 +66,8 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showHomeMinigameTeleports",
 		name = "Teleport cooldown timers",
-		description = "Configures whether timers for home and minigame teleport cooldowns are displayed",
-		section = miscellaneousSection
+		description = "Configures whether timers for Home and Minigame teleport cooldowns are displayed",
+		section = spellsSection
 	)
 	default boolean showHomeMinigameTeleports()
 	{
