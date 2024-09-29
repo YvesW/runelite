@@ -105,7 +105,6 @@ public class TimersAndBuffsPlugin extends Plugin
 	private static final String STAFF_OF_THE_DEAD_SPEC_EXPIRED_MESSAGE = "Your protection fades away";
 	private static final String STAFF_OF_THE_DEAD_SPEC_MESSAGE = "Spirits of deceased evildoers offer you their protection";
 	private static final String PRAYER_ENHANCE_EXPIRED = "<col=ff0000>Your prayer enhance effect has worn off.</col>";
-	private static final String SHADOW_VEIL_MESSAGE = ">Your thieving abilities have been enhanced.</col>";
 	private static final String RESURRECT_THRALL_MESSAGE_START = ">You resurrect a ";
 	private static final String RESURRECT_THRALL_MESSAGE_END = " thrall.</col>";
 	private static final String RESURRECT_THRALL_MESSAGE_GHOSTLY = "ghostly";
@@ -278,11 +277,20 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.SHADOW_VEIL_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.SHADOW_VEIL_COOLDOWN)
 		{
 			if (event.getValue() == 1)
 			{
-				createGameTimer(SHADOW_VEIL_COOLDOWN);
+				if (config.showArceuusCooldown())
+				{
+					createGameTimer(SHADOW_VEIL_COOLDOWN);
+				}
+				if (config.showArceuus())
+				{
+					// Varbits.SHADOW_VEIL does not get reset to 0 when shadow veil is cast while the effect is active
+					// Varbits.SHADOW_VEIL_COOLDOWN does get properly reset though and procs on the same tick
+					createGameTimer(SHADOW_VEIL, Duration.of(client.getRealSkillLevel(Skill.MAGIC), RSTimeUnit.GAME_TICKS));
+				}
 			}
 			else
 			{
@@ -939,11 +947,7 @@ public class TimersAndBuffsPlugin extends Plugin
 		if (config.showArceuus())
 		{
 			final int magicLevel = client.getRealSkillLevel(Skill.MAGIC);
-			if (message.endsWith(SHADOW_VEIL_MESSAGE))
-			{
-				createGameTimer(SHADOW_VEIL, Duration.of(magicLevel, RSTimeUnit.GAME_TICKS));
-			}
-			else if (message.endsWith(WARD_OF_ARCEUUS_MESSAGE))
+			if (message.endsWith(WARD_OF_ARCEUUS_MESSAGE))
 			{
 				createGameTimer(WARD_OF_ARCEUUS, Duration.of(magicLevel, RSTimeUnit.GAME_TICKS));
 			}
