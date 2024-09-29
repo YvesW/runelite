@@ -650,6 +650,7 @@ public final class Varbits
 	public static final int DARK_LURE_COOLDOWN = 12289;
 	public static final int RESURRECT_THRALL_COOLDOWN = 12290;
 	public static final int SHADOW_VEIL_COOLDOWN = 12291;
+	public static final int VILE_VIGOUR_COOLDOWN = 12292;
 	public static final int WARD_OF_ARCEUUS_COOLDOWN = 12293;
 	public static final int SINISTER_DEMONIC_OFFERING_COOLDOWN = 12423;
 

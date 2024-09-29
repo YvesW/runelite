@@ -314,6 +314,18 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
+		if (event.getVarbitId() == Varbits.VILE_VIGOUR_COOLDOWN && config.showArceuusCooldown())
+		{
+			if (event.getValue() == 1)
+			{
+				createGameTimer(VILE_VIGOUR_COOLDOWN);
+			}
+			else
+			{
+				removeGameTimer(VILE_VIGOUR_COOLDOWN);
+			}
+		}
+
 		if (event.getVarbitId() == Varbits.WARD_OF_ARCEUUS_COOLDOWN)
 		{
 			if (event.getValue() == 1)
@@ -803,6 +815,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(DEATH_CHARGE_COOLDOWN);
 			removeGameTimer(RESURRECT_THRALL_COOLDOWN);
 			removeGameTimer(SHADOW_VEIL_COOLDOWN);
+			removeGameTimer(VILE_VIGOUR_COOLDOWN);
 			removeGameTimer(WARD_OF_ARCEUUS_COOLDOWN);
 			removeGameTimer(CORRUPTION_COOLDOWN);
 			removeGameTimer(MARK_OF_DARKNESS_COOLDOWN);
