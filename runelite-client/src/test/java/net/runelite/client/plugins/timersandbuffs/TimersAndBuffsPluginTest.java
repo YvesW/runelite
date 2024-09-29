@@ -383,8 +383,11 @@ public class TimersAndBuffsPluginTest
 	{
 		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
 		when(client.getRealSkillLevel(Skill.MAGIC)).thenReturn(57);
-		ChatMessage chatMessage = new ChatMessage(null, ChatMessageType.GAMEMESSAGE, "", "<col=0000b2>Your defence against Arceuus magic has been strengthened.</col>", "", 0);
-		timersAndBuffsPlugin.onChatMessage(chatMessage);
+
+		VarbitChanged varbitChanged = new VarbitChanged();
+		varbitChanged.setVarbitId(Varbits.WARD_OF_ARCEUUS_COOLDOWN);
+		varbitChanged.setValue(1);
+		timersAndBuffsPlugin.onVarbitChanged(varbitChanged);
 
 		ArgumentCaptor<InfoBox> captor = ArgumentCaptor.forClass(InfoBox.class);
 		verify(infoBoxManager).addInfoBox(captor.capture());
