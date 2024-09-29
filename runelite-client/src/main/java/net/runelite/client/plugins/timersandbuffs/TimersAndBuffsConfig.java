@@ -67,7 +67,7 @@ public interface TimersAndBuffsConfig extends Config
 		keyName = "showHomeMinigameTeleports",
 		name = "Teleport cooldown timers",
 		description = "Configures whether timers for home and minigame teleport cooldowns are displayed",
-		section = miscellaneousSection
+		section = spellsSection
 	)
 	default boolean showHomeMinigameTeleports()
 	{
