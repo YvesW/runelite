@@ -40,6 +40,7 @@ import net.runelite.api.Varbits;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.VarbitChanged;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
@@ -90,6 +91,10 @@ public class TimersAndBuffsPluginTest
 	@Mock
 	@Bind
 	private InfoBoxManager infoBoxManager;
+
+	@Mock
+	@Bind
+	private ConfigManager configManager;
 
 	@Before
 	public void before()
@@ -348,7 +353,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testDeathChargeCast()
 	{
-		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
+		when(timersAndBuffsConfig.showDeathCharge()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.EFFECT);
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.DEATH_CHARGE);
 		varbitChanged.setValue(1);
@@ -363,7 +368,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testDeathChargeCooldown()
 	{
-		when(timersAndBuffsConfig.showArceuusCooldown()).thenReturn(true);
+		when(timersAndBuffsConfig.showDeathCharge()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.COOLDOWN);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.DEATH_CHARGE_COOLDOWN);
@@ -379,7 +384,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testArceuusWard()
 	{
-		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
+		when(timersAndBuffsConfig.showWardOfArceuus()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.EFFECT);
 		when(client.getRealSkillLevel(Skill.MAGIC)).thenReturn(57);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
@@ -397,7 +402,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testArceuusWardCooldown()
 	{
-		when(timersAndBuffsConfig.showArceuusCooldown()).thenReturn(true);
+		when(timersAndBuffsConfig.showWardOfArceuus()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.COOLDOWN);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.WARD_OF_ARCEUUS_COOLDOWN);
@@ -413,7 +418,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testCorruptionCooldown()
 	{
-		when(timersAndBuffsConfig.showArceuusCooldown()).thenReturn(true);
+		when(timersAndBuffsConfig.showCorruption()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.COOLDOWN);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.CORRUPTION_COOLDOWN);
@@ -429,7 +434,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testShadowVeil()
 	{
-		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
+		when(timersAndBuffsConfig.showShadowVeil()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.EFFECT);
 		when(client.getRealSkillLevel(Skill.MAGIC)).thenReturn(57);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
@@ -446,7 +451,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testShadowVeilCooldown()
 	{
-		when(timersAndBuffsConfig.showArceuusCooldown()).thenReturn(true);
+		when(timersAndBuffsConfig.showShadowVeil()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.COOLDOWN);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.SHADOW_VEIL_COOLDOWN);
@@ -462,7 +467,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testThrall()
 	{
-		when(timersAndBuffsConfig.showArceuus()).thenReturn(true);
+		when(timersAndBuffsConfig.showResurrectThrall()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.EFFECT);
 		when(client.getBoostedSkillLevel(Skill.MAGIC)).thenReturn(60);
 
 		ChatMessage chatMessage = new ChatMessage(null, ChatMessageType.GAMEMESSAGE, "", "<col=ef0083>You resurrect a greater zombified thrall.</col>", "", 0);
@@ -478,7 +483,7 @@ public class TimersAndBuffsPluginTest
 	@Test
 	public void testThrallCooldown()
 	{
-		when(timersAndBuffsConfig.showArceuusCooldown()).thenReturn(true);
+		when(timersAndBuffsConfig.showResurrectThrall()).thenReturn(TimersAndBuffsConfig.SpellEffectCD.COOLDOWN);
 
 		VarbitChanged varbitChanged = new VarbitChanged();
 		varbitChanged.setVarbitId(Varbits.RESURRECT_THRALL_COOLDOWN);

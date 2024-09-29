@@ -35,6 +35,14 @@ public interface TimersAndBuffsConfig extends Config
 {
 	String GROUP = "timers";
 
+	enum SpellEffectCD
+	{
+		DISABLED,
+		EFFECT,
+		COOLDOWN,
+		BOTH
+	}
+
 	@ConfigSection(
 		name = "Bosses",
 		description = "Timers and buffs related to bosses",
@@ -219,8 +227,8 @@ public interface TimersAndBuffsConfig extends Config
 
 	@ConfigItem(
 		keyName = "showMagicImbue",
-		name = "Magic imbue timer",
-		description = "Configures whether magic imbue timer is displayed",
+		name = "Magic Imbue timer",
+		description = "Configures whether Magic Imbue timer is displayed",
 		section = spellsSection
 	)
 	default boolean showMagicImbue()
@@ -253,7 +261,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showVengeance",
 		name = "Vengeance timer",
-		description = "Configures whether vengeance and vengeance other timer is displayed",
+		description = "Configures whether Vengeance and Vengeance Other timer is displayed",
 		section = spellsSection
 	)
 	default boolean showVengeance()
@@ -264,7 +272,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showVengeanceActive",
 		name = "Vengeance active",
-		description = "Configures whether an indicator for vengeance being active is displayed",
+		description = "Configures whether an indicator for Vengeance being active is displayed",
 		section = spellsSection
 	)
 	default boolean showVengeanceActive()
@@ -275,7 +283,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showHealGroup",
 		name = "Heal Group timer",
-		description = "Configures whether heal group timer is displayed",
+		description = "Configures whether Heal Group timer is displayed",
 		section = spellsSection
 	)
 	default boolean showHealGroup()
@@ -286,7 +294,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showTeleblock",
 		name = "Teleblock timer",
-		description = "Configures whether teleblock timer is displayed",
+		description = "Configures whether Teleblock timer is displayed",
 		section = miscellaneousSection
 	)
 	default boolean showTeleblock()
@@ -391,25 +399,102 @@ public interface TimersAndBuffsConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "showArceuus",
-		name = "Arceuus spells duration",
-		description = "Whether to show Arceuus spellbook spell timers",
+		keyName = "showDeathCharge",
+		name = "Death Charge",
+		description = "Whether to show Death Charge duration and cooldown timers",
 		section = spellsSection
 	)
-	default boolean showArceuus()
+	default SpellEffectCD showDeathCharge()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showResurrectThrall",
+		name = "Resurrect Thrall",
+		description = "Whether to show Thrall duration and cooldown timers",
+		section = spellsSection
+	)
+	default SpellEffectCD showResurrectThrall()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showShadowVeil",
+		name = "Shadow Veil",
+		description = "Whether to show Shadow Veil duration and cooldown timers",
+		section = spellsSection
+	)
+	default SpellEffectCD showShadowVeil()
+	{
+		return SpellEffectCD.BOTH;
+	}
+
+	@ConfigItem(
+		keyName = "showVileVigourCooldown",
+		name = "Vile Vigour cooldown",
+		description = "Whether to show Vile Vigour cooldown timer",
+		section = spellsSection
+	)
+	default boolean showVileVigourCooldown()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-		keyName = "showArceuusCooldown",
-		name = "Arceuus spells cooldown",
-		description = "Whether to show cooldown timers for Arceuus spellbook spells",
+		keyName = "showWardOfArceuus",
+		name = "Ward of Arceuus",
+		description = "Whether to show Ward of Arceuus duration and cooldown timers",
 		section = spellsSection
 	)
-	default boolean showArceuusCooldown()
+	default SpellEffectCD showWardOfArceuus()
 	{
-		return false;
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showCorruption",
+		name = "Corruption",
+		description = "Whether to show Lesser/Greater Corruption buff and cooldown timer",
+		section = spellsSection
+	)
+	default SpellEffectCD showCorruption()
+	{
+		return SpellEffectCD.BOTH;
+	}
+
+	@ConfigItem(
+		keyName = "showMarkOfDarkness",
+		name = "Mark of Darkness",
+		description = "Whether to show Mark of Darkness duration and cooldown timers",
+		section = spellsSection
+	)
+	default SpellEffectCD showMarkOfDarkness()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showDarkLureCooldown",
+		name = "Dark Lure cooldown",
+		description = "Whether to show Dark Lure cooldown timer",
+		section = spellsSection
+	)
+	default boolean showDarkLureCooldown()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "showOfferingCooldown",
+		name = "Offering cooldown",
+		description = "Whether to show Sinister/Demonic Offering cooldown timer",
+		section = spellsSection
+	)
+	default boolean showOfferingCooldown()
+	{
+		return true;
 	}
 
 	@ConfigItem(
