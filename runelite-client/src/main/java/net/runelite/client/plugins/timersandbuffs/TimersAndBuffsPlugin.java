@@ -72,6 +72,7 @@ import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
+import net.runelite.client.events.ProfileChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemVariationMapping;
 import net.runelite.client.game.SpriteManager;
@@ -164,6 +165,9 @@ public class TimersAndBuffsPlugin extends Plugin
 	@Inject
 	private InfoBoxManager infoBoxManager;
 
+	@Inject
+	private ConfigManager configManager;
+
 	@Provides
 	TimersAndBuffsConfig getConfig(ConfigManager configManager)
 	{
@@ -173,6 +177,7 @@ public class TimersAndBuffsPlugin extends Plugin
 	@Override
 	public void startUp()
 	{
+		migrate();
 		if (config.showHomeMinigameTeleports())
 		{
 			checkTeleport(LAST_HOME_TELEPORT);
@@ -193,6 +198,12 @@ public class TimersAndBuffsPlugin extends Plugin
 		varTimers.clear();
 		infoBoxManager.removeIf(buffCounter -> buffCounter instanceof BuffCounter);
 		varCounters.clear();
+	}
+
+	@Subscribe
+	public void onProfileChanged(ProfileChanged profileChanged)
+	{
+		migrate();
 	}
 
 	@Subscribe
@@ -240,7 +251,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.DEATH_CHARGE_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.DEATH_CHARGE_COOLDOWN && showSpellCD(config.showDeathCharge()))
 		{
 			if (event.getValue() == 1)
 			{
@@ -252,7 +263,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.CORRUPTION_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.CORRUPTION_COOLDOWN && showSpellCD(config.showCorruption()))
 		{
 			if (event.getValue() == 1)
 			{
@@ -264,12 +275,12 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.CORRUPTION && config.showArceuus())
+		if (event.getVarbitId() == Varbits.CORRUPTION && showSpellEffect(config.showCorruption()))
 		{
 			updateVarCounter(CORRUPTION, event.getValue());
 		}
 
-		if (event.getVarbitId() == Varbits.DARK_LURE_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.DARK_LURE_COOLDOWN && config.showDarkLureCooldown())
 		{
 			if (event.getValue() == 1)
 			{
@@ -281,7 +292,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.RESURRECT_THRALL_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.RESURRECT_THRALL_COOLDOWN && showSpellCD(config.showResurrectThrall()))
 		{
 			if (event.getValue() == 1)
 			{
@@ -297,11 +308,11 @@ public class TimersAndBuffsPlugin extends Plugin
 		{
 			if (event.getValue() == 1)
 			{
-				if (config.showArceuusCooldown())
+				if (showSpellCD(config.showShadowVeil()))
 				{
 					createGameTimer(SHADOW_VEIL_COOLDOWN);
 				}
-				if (config.showArceuus())
+				if (showSpellEffect(config.showShadowVeil()))
 				{
 					// Varbits.SHADOW_VEIL does not get reset to 0 when shadow veil is cast while the effect is active
 					// Varbits.SHADOW_VEIL_COOLDOWN does get properly reset though and procs on the same tick
@@ -314,7 +325,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.VILE_VIGOUR_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.VILE_VIGOUR_COOLDOWN && config.showVileVigourCooldown())
 		{
 			if (event.getValue() == 1)
 			{
@@ -330,11 +341,11 @@ public class TimersAndBuffsPlugin extends Plugin
 		{
 			if (event.getValue() == 1)
 			{
-				if (config.showArceuusCooldown())
+				if (showSpellCD(config.showWardOfArceuus()))
 				{
 					createGameTimer(WARD_OF_ARCEUUS_COOLDOWN);
 				}
-				if (config.showArceuus())
+				if (showSpellEffect(config.showWardOfArceuus()))
 				{
 					createGameTimer(WARD_OF_ARCEUUS, Duration.of(client.getRealSkillLevel(Skill.MAGIC), RSTimeUnit.GAME_TICKS));
 				}
@@ -345,7 +356,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.SINISTER_DEMONIC_OFFERING_COOLDOWN && config.showArceuusCooldown())
+		if (event.getVarbitId() == Varbits.SINISTER_DEMONIC_OFFERING_COOLDOWN && config.showOfferingCooldown())
 		{
 			if (event.getValue() == 1)
 			{
@@ -362,7 +373,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarCounter(VENGEANCE_ACTIVE, event.getValue());
 		}
 
-		if (event.getVarbitId() == Varbits.DEATH_CHARGE && config.showArceuus())
+		if (event.getVarbitId() == Varbits.DEATH_CHARGE && showSpellEffect(config.showDeathCharge()))
 		{
 			if (event.getValue() == 1)
 			{
@@ -374,12 +385,12 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.RESURRECT_THRALL && event.getValue() == 0 && config.showArceuus())
+		if (event.getVarbitId() == Varbits.RESURRECT_THRALL && event.getValue() == 0 && showSpellEffect(config.showResurrectThrall()))
 		{
 			removeGameTimer(RESURRECT_THRALL);
 		}
 
-		if (event.getVarbitId() == Varbits.SHADOW_VEIL && event.getValue() == 0 && config.showArceuus())
+		if (event.getVarbitId() == Varbits.SHADOW_VEIL && event.getValue() == 0 && showSpellEffect(config.showShadowVeil()))
 		{
 			removeGameTimer(SHADOW_VEIL);
 		}
@@ -800,26 +811,78 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(ICEBARRAGE);
 		}
 
-		if (!config.showArceuus())
+		if (!showSpellEffect(config.showDeathCharge()))
 		{
 			removeGameTimer(DEATH_CHARGE);
+		}
+
+		if (!showSpellCD(config.showDeathCharge()))
+		{
+			removeGameTimer(DEATH_CHARGE_COOLDOWN);
+		}
+
+		if (!showSpellEffect(config.showResurrectThrall()))
+		{
 			removeGameTimer(RESURRECT_THRALL);
+		}
+
+		if (!showSpellCD(config.showResurrectThrall()))
+		{
+			removeGameTimer(RESURRECT_THRALL_COOLDOWN);
+		}
+
+		if (!showSpellEffect(config.showShadowVeil()))
+		{
 			removeGameTimer(SHADOW_VEIL);
+		}
+
+		if (!showSpellCD(config.showShadowVeil()))
+		{
+			removeGameTimer(SHADOW_VEIL_COOLDOWN);
+		}
+
+		if (!config.showVileVigourCooldown())
+		{
+			removeGameTimer(VILE_VIGOUR_COOLDOWN);
+		}
+
+		if (!showSpellEffect(config.showWardOfArceuus()))
+		{
 			removeGameTimer(WARD_OF_ARCEUUS);
+		}
+
+		if (!showSpellCD(config.showWardOfArceuus()))
+		{
+			removeGameTimer(WARD_OF_ARCEUUS_COOLDOWN);
+		}
+
+		if (!showSpellEffect(config.showCorruption()))
+		{
 			removeVarCounter(CORRUPTION);
+		}
+
+		if (!showSpellCD(config.showCorruption()))
+		{
+			removeGameTimer(CORRUPTION_COOLDOWN);
+		}
+
+		if (!showSpellEffect(config.showMarkOfDarkness()))
+		{
 			removeGameTimer(MARK_OF_DARKNESS);
 		}
 
-		if (!config.showArceuusCooldown())
+		if (!showSpellCD(config.showMarkOfDarkness()))
 		{
-			removeGameTimer(DEATH_CHARGE_COOLDOWN);
-			removeGameTimer(RESURRECT_THRALL_COOLDOWN);
-			removeGameTimer(SHADOW_VEIL_COOLDOWN);
-			removeGameTimer(VILE_VIGOUR_COOLDOWN);
-			removeGameTimer(WARD_OF_ARCEUUS_COOLDOWN);
-			removeGameTimer(CORRUPTION_COOLDOWN);
 			removeGameTimer(MARK_OF_DARKNESS_COOLDOWN);
+		}
+
+		if (!config.showDarkLureCooldown())
+		{
 			removeGameTimer(DARK_LURE_COOLDOWN);
+		}
+
+		if (!config.showOfferingCooldown())
+		{
 			removeGameTimer(SINISTER_DEMONIC_OFFERING_COOLDOWN);
 		}
 
@@ -995,44 +1058,44 @@ public class TimersAndBuffsPlugin extends Plugin
 			freezeTime = client.getTickCount();
 		}
 
-		if (config.showArceuus())
+		if (message.endsWith(MARK_OF_DARKNESS_MESSAGE))
 		{
 			final int magicLevel = client.getRealSkillLevel(Skill.MAGIC);
-			if (message.endsWith(MARK_OF_DARKNESS_MESSAGE))
+			if (showSpellEffect(config.showMarkOfDarkness()))
 			{
 				createGameTimer(MARK_OF_DARKNESS, Duration.of(magicLevel, RSTimeUnit.GAME_TICKS));
 			}
-			else if (message.contains(RESURRECT_THRALL_MESSAGE_START) && message.endsWith(RESURRECT_THRALL_MESSAGE_END))
+			if (showSpellCD(config.showMarkOfDarkness()))
 			{
-				// by default the thrall lasts 1 tick per magic level
-				int t = client.getBoostedSkillLevel(Skill.MAGIC);
-				// ca tiers being completed boosts this
-				if (client.getVarbitValue(Varbits.COMBAT_ACHIEVEMENT_TIER_GRANDMASTER) == 2)
-				{
-					t += t; // 100% boost
-				}
-				else if (client.getVarbitValue(Varbits.COMBAT_ACHIEVEMENT_TIER_MASTER) == 2)
-				{
-					t += t / 2; // 50% boost
-				}
-
-				int spriteID = SpriteID.SPELL_RESURRECT_GREATER_SKELETON;
-				if (message.contains(RESURRECT_THRALL_MESSAGE_GHOSTLY))
-				{
-					spriteID = SpriteID.SPELL_RESURRECT_GREATER_GHOST;
-				}
-				else if (message.contains(RESURRECT_THRALL_MESSAGE_ZOMBIFIED))
-				{
-					spriteID = SpriteID.SPELL_RESURRECT_GREATER_ZOMBIE;
-				}
-				createGameTimer(RESURRECT_THRALL, Duration.of(t, RSTimeUnit.GAME_TICKS), spriteID, GameTimerImageType.SPRITE);
+				createGameTimer(MARK_OF_DARKNESS_COOLDOWN, Duration.of(magicLevel - 10, RSTimeUnit.GAME_TICKS));
 			}
 		}
 
-		if (message.endsWith(MARK_OF_DARKNESS_MESSAGE) && config.showArceuusCooldown())
+		if (message.contains(RESURRECT_THRALL_MESSAGE_START) && message.endsWith(RESURRECT_THRALL_MESSAGE_END)
+			&& showSpellEffect(config.showResurrectThrall()))
 		{
-			final int magicLevel = client.getRealSkillLevel(Skill.MAGIC);
-			createGameTimer(MARK_OF_DARKNESS_COOLDOWN, Duration.of(magicLevel - 10, RSTimeUnit.GAME_TICKS));
+			// by default the thrall lasts 1 tick per magic level
+			int t = client.getBoostedSkillLevel(Skill.MAGIC);
+			// ca tiers being completed boosts this
+			if (client.getVarbitValue(Varbits.COMBAT_ACHIEVEMENT_TIER_GRANDMASTER) == 2)
+			{
+				t += t; // 100% boost
+			}
+			else if (client.getVarbitValue(Varbits.COMBAT_ACHIEVEMENT_TIER_MASTER) == 2)
+			{
+				t += t / 2; // 50% boost
+			}
+
+			int spriteID = SpriteID.SPELL_RESURRECT_GREATER_SKELETON;
+			if (message.contains(RESURRECT_THRALL_MESSAGE_GHOSTLY))
+			{
+				spriteID = SpriteID.SPELL_RESURRECT_GREATER_GHOST;
+			}
+			else if (message.contains(RESURRECT_THRALL_MESSAGE_ZOMBIFIED))
+			{
+				spriteID = SpriteID.SPELL_RESURRECT_GREATER_ZOMBIE;
+			}
+			createGameTimer(RESURRECT_THRALL, Duration.of(t, RSTimeUnit.GAME_TICKS), spriteID, GameTimerImageType.SPRITE);
 		}
 
 		if (TZHAAR_PAUSED_MESSAGE.matcher(message).find())
@@ -1444,5 +1507,55 @@ public class TimersAndBuffsPlugin extends Plugin
 	private void removeBuffCounter(GameCounter gameCounter)
 	{
 		infoBoxManager.removeIf(b -> b instanceof BuffCounter && ((BuffCounter) b).getGameCounter() == gameCounter);
+	}
+
+	private boolean showSpellCD(TimersAndBuffsConfig.SpellEffectCD configValue)
+	{
+		return configValue == TimersAndBuffsConfig.SpellEffectCD.COOLDOWN || configValue == TimersAndBuffsConfig.SpellEffectCD.BOTH;
+	}
+
+	private boolean showSpellEffect(TimersAndBuffsConfig.SpellEffectCD configValue)
+	{
+		return configValue == TimersAndBuffsConfig.SpellEffectCD.EFFECT || configValue == TimersAndBuffsConfig.SpellEffectCD.BOTH;
+	}
+
+	private void migrate()
+	{
+		final Boolean arceuusEffect = configManager.getConfiguration(TimersAndBuffsConfig.GROUP, "showArceuus", Boolean.class);
+		final Boolean arceuusCooldown = configManager.getConfiguration(TimersAndBuffsConfig.GROUP, "showArceuusCooldown", Boolean.class);
+		migrateSpellValues(new String[]{"showArceuus", "showArceuusCooldown"},
+			arceuusEffect, arceuusCooldown,
+			new String[]{"showDeathCharge", "showResurrectThrall", "showShadowVeil", "showWardOfArceuus", "showCorruption", "showMarkOfDarkness"});
+	}
+
+	private void migrateSpellValues(String[] oldKeys, Boolean oldEffect, Boolean oldCooldown, String[] newKeys)
+	{
+		if (oldEffect == null || oldCooldown == null)
+		{
+			return;
+		}
+
+		TimersAndBuffsConfig.SpellEffectCD newValue = TimersAndBuffsConfig.SpellEffectCD.DISABLED;
+		if (oldEffect && oldCooldown)
+		{
+			newValue = TimersAndBuffsConfig.SpellEffectCD.BOTH;
+		}
+		else if (oldEffect)
+		{
+			newValue = TimersAndBuffsConfig.SpellEffectCD.EFFECT;
+		}
+		else if (oldCooldown)
+		{
+			newValue = TimersAndBuffsConfig.SpellEffectCD.COOLDOWN;
+		}
+
+		for (String newKey : newKeys)
+		{
+			configManager.setConfiguration(TimersAndBuffsConfig.GROUP, newKey, newValue);
+		}
+		for (String oldKey : oldKeys)
+		{
+			configManager.unsetConfiguration(TimersAndBuffsConfig.GROUP, oldKey);
+		}
 	}
 }

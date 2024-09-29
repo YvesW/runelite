@@ -35,6 +35,14 @@ public interface TimersAndBuffsConfig extends Config
 {
 	String GROUP = "timers";
 
+	enum SpellEffectCD
+	{
+		DISABLED,
+		EFFECT,
+		COOLDOWN,
+		BOTH
+	}
+
 	@ConfigSection(
 		name = "Bosses",
 		description = "Timers and buffs related to bosses",
@@ -391,25 +399,102 @@ public interface TimersAndBuffsConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "showArceuus",
-		name = "Arceuus spells duration",
-		description = "Whether to show Arceuus spellbook spell timers",
+		keyName = "showDeathCharge",
+		name = "Death charge",
+		description = "Whether to show death charge duration and cooldown timers.",
 		section = spellsSection
 	)
-	default boolean showArceuus()
+	default SpellEffectCD showDeathCharge()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showResurrectThrall",
+		name = "Resurrect thrall",
+		description = "Whether to show thrall duration and cooldown timers.",
+		section = spellsSection
+	)
+	default SpellEffectCD showResurrectThrall()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showShadowVeil",
+		name = "Shadow veil",
+		description = "Whether to show shadow veil duration and cooldown timers.",
+		section = spellsSection
+	)
+	default SpellEffectCD showShadowVeil()
+	{
+		return SpellEffectCD.BOTH;
+	}
+
+	@ConfigItem(
+		keyName = "showVileVigourCooldown",
+		name = "Vile vigour cooldown",
+		description = "Whether to show the vile vigour cooldown timer.",
+		section = spellsSection
+	)
+	default boolean showVileVigourCooldown()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-		keyName = "showArceuusCooldown",
-		name = "Arceuus spells cooldown",
-		description = "Whether to show cooldown timers for Arceuus spellbook spells",
+		keyName = "showWardOfArceuus",
+		name = "Ward of arceuus",
+		description = "Whether to show ward of arceuus duration and cooldown timers.",
 		section = spellsSection
 	)
-	default boolean showArceuusCooldown()
+	default SpellEffectCD showWardOfArceuus()
 	{
-		return false;
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showCorruption",
+		name = "Corruption",
+		description = "Whether to show lesser/greater corruption buff and cooldown timers.",
+		section = spellsSection
+	)
+	default SpellEffectCD showCorruption()
+	{
+		return SpellEffectCD.BOTH;
+	}
+
+	@ConfigItem(
+		keyName = "showMarkOfDarkness",
+		name = "Mark of darkness",
+		description = "Whether to show mark of darkness duration and cooldown timers.",
+		section = spellsSection
+	)
+	default SpellEffectCD showMarkOfDarkness()
+	{
+		return SpellEffectCD.EFFECT;
+	}
+
+	@ConfigItem(
+		keyName = "showDarkLureCooldown",
+		name = "Dark lure cooldown",
+		description = "Whether to show the dark lure cooldown timer.",
+		section = spellsSection
+	)
+	default boolean showDarkLureCooldown()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "showOfferingCooldown",
+		name = "Offering cooldown",
+		description = "Whether to show the sinister/demonic offering cooldown timer.",
+		section = spellsSection
+	)
+	default boolean showOfferingCooldown()
+	{
+		return true;
 	}
 
 	@ConfigItem(
