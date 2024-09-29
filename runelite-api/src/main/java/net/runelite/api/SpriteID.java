@@ -1259,7 +1259,9 @@ public final class SpriteID
 	public static final int SPELL_GREATER_CORRUPTION_DISABLED = 1327;
 	/* Unmapped: 1328 */
 	public static final int SPELL_DEATH_CHARGE_DISABLED = 1329;
-	/* Unmapped: 1330~1333 */
+	/* Unmapped: 1330 */
+	public static final int SPELL_SINISTER_OFFERING_DISABLED = 1331;
+	/* Unmapped: 1332~1333 */
 	public static final int SPELL_SHADOW_VEIL_DISABLED = 1334;
 	public static final int SPELL_DARK_LURE_DISABLED = 1335;
 	/* Unmapped: 1336~1337 */

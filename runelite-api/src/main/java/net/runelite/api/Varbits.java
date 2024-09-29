@@ -651,6 +651,7 @@ public final class Varbits
 	public static final int RESURRECT_THRALL_COOLDOWN = 12290;
 	public static final int SHADOW_VEIL_COOLDOWN = 12291;
 	public static final int WARD_OF_ARCEUUS_COOLDOWN = 12293;
+	public static final int SINISTER_DEMONIC_OFFERING_COOLDOWN = 12423;
 
 	/**
 	 * Imbued Heart cooldown

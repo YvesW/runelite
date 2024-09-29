@@ -90,6 +90,7 @@ enum GameTimer
 	CORRUPTION_COOLDOWN(SpriteID.SPELL_GREATER_CORRUPTION_DISABLED, GameTimerImageType.SPRITE, "Corruption cooldown", 30, ChronoUnit.SECONDS),
 	DARK_LURE_COOLDOWN(SpriteID.SPELL_DARK_LURE_DISABLED, GameTimerImageType.SPRITE, "Dark Lure cooldown", 17, GAME_TICKS),
 	MARK_OF_DARKNESS_COOLDOWN(SpriteID.SPELL_MARK_OF_DARKNESS_DISABLED, GameTimerImageType.SPRITE, "Mark of Darkness cooldown", true),
+	SINISTER_DEMONIC_OFFERING_COOLDOWN(SpriteID.SPELL_SINISTER_OFFERING_DISABLED, GameTimerImageType.SPRITE, "Offering cooldown", 9, GAME_TICKS),
 	PICKPOCKET_STUN(SpriteID.SKILL_THIEVING, GameTimerImageType.SPRITE, "Stunned", true),
 	FARMERS_AFFINITY(ItemID.GRAIN, GameTimerImageType.ITEM, "Farmer's Affinity", false),
 	SMELLING_SALTS(ItemID.SMELLING_SALTS_2, GameTimerImageType.ITEM, "Smelling salts", false),

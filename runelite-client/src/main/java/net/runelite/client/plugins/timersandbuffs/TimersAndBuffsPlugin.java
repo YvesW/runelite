@@ -333,6 +333,18 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
+		if (event.getVarbitId() == Varbits.SINISTER_DEMONIC_OFFERING_COOLDOWN && config.showArceuusCooldown())
+		{
+			if (event.getValue() == 1)
+			{
+				createGameTimer(SINISTER_DEMONIC_OFFERING_COOLDOWN);
+			}
+			else
+			{
+				removeGameTimer(SINISTER_DEMONIC_OFFERING_COOLDOWN);
+			}
+		}
+
 		if (event.getVarbitId() == Varbits.VENGEANCE_ACTIVE && config.showVengeanceActive())
 		{
 			updateVarCounter(VENGEANCE_ACTIVE, event.getValue());
@@ -795,6 +807,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(CORRUPTION_COOLDOWN);
 			removeGameTimer(MARK_OF_DARKNESS_COOLDOWN);
 			removeGameTimer(DARK_LURE_COOLDOWN);
+			removeGameTimer(SINISTER_DEMONIC_OFFERING_COOLDOWN);
 		}
 
 		if (!config.showAntiPoison())
