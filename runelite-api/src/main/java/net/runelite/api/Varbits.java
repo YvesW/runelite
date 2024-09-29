@@ -647,6 +647,7 @@ public final class Varbits
 	public static final int VENGEANCE_COOLDOWN = 2451;
 	public static final int DEATH_CHARGE_COOLDOWN = 12138;
 	public static final int CORRUPTION_COOLDOWN = 12288;
+	public static final int DARK_LURE_COOLDOWN = 12289;
 	public static final int RESURRECT_THRALL_COOLDOWN = 12290;
 	public static final int SHADOW_VEIL_COOLDOWN = 12291;
 	public static final int WARD_OF_ARCEUUS_COOLDOWN = 12293;

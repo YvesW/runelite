@@ -1261,7 +1261,8 @@ public final class SpriteID
 	public static final int SPELL_DEATH_CHARGE_DISABLED = 1329;
 	/* Unmapped: 1330~1333 */
 	public static final int SPELL_SHADOW_VEIL_DISABLED = 1334;
-	/* Unmapped: 1335~1337 */
+	public static final int SPELL_DARK_LURE_DISABLED = 1335;
+	/* Unmapped: 1336~1337 */
 	public static final int WORLD_SWITCHER_WORLD_STAR_BLUE = 1338;
 	/* Unmapped: 1339 */
 	public static final int FAIRY_RING_REMOVE_FAVOURITE = 1340;
