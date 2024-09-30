@@ -634,7 +634,7 @@ public final class Varbits
 	 * 1 = lesser corruption buff active
 	 * 2 = greater corruption buff active
 	 */
-	public static final int VENGEANCE_ACTIVE = 2450;
+	public static final int VENGEANCE = 2450;
 	public static final int DEATH_CHARGE = 12411;
 	public static final int CORRUPTION = 12136;
 	public static final int RESURRECT_THRALL = 12413;
