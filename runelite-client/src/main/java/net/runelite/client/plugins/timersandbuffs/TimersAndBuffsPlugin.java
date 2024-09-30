@@ -215,15 +215,15 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(PRAYER_ENHANCE);
 		}
 
-		if (event.getVarbitId() == Varbits.VENGEANCE_COOLDOWN && config.showVengeance())
+		if (event.getVarbitId() == Varbits.VENGEANCE_COOLDOWN && showSpellCD(config.showVengeanceSpell()))
 		{
 			if (event.getValue() == 1)
 			{
-				createGameTimer(VENGEANCE);
+				createGameTimer(VENGEANCE_COOLDOWN);
 			}
 			else
 			{
-				removeGameTimer(VENGEANCE);
+				removeGameTimer(VENGEANCE_COOLDOWN);
 			}
 		}
 
@@ -368,9 +368,9 @@ public class TimersAndBuffsPlugin extends Plugin
 			}
 		}
 
-		if (event.getVarbitId() == Varbits.VENGEANCE_ACTIVE && config.showVengeanceActive())
+		if (event.getVarbitId() == Varbits.VENGEANCE && showSpellEffect(config.showVengeanceSpell()))
 		{
-			updateVarCounter(VENGEANCE_ACTIVE, event.getValue());
+			updateVarCounter(VENGEANCE, event.getValue());
 		}
 
 		if (event.getVarbitId() == Varbits.DEATH_CHARGE && showSpellEffect(config.showDeathCharge()))
@@ -780,9 +780,9 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(STAFF_OF_THE_DEAD);
 		}
 
-		if (!config.showVengeance())
+		if (!showSpellCD(config.showVengeanceSpell()))
 		{
-			removeGameTimer(VENGEANCE);
+			removeGameTimer(VENGEANCE_COOLDOWN);
 		}
 
 		if (!config.showHealGroup())
@@ -790,9 +790,9 @@ public class TimersAndBuffsPlugin extends Plugin
 			removeGameTimer(HEAL_GROUP);
 		}
 
-		if (!config.showVengeanceActive())
+		if (!showSpellEffect(config.showVengeanceSpell()))
 		{
-			removeVarCounter(VENGEANCE_ACTIVE);
+			removeVarCounter(VENGEANCE);
 		}
 
 		if (!config.showTeleblock())
@@ -1526,6 +1526,12 @@ public class TimersAndBuffsPlugin extends Plugin
 		migrateSpellValues(new String[]{"showArceuus", "showArceuusCooldown"},
 			arceuusEffect, arceuusCooldown,
 			new String[]{"showDeathCharge", "showResurrectThrall", "showShadowVeil", "showWardOfArceuus", "showCorruption", "showMarkOfDarkness"});
+
+		final Boolean vengeanceEffect = configManager.getConfiguration(TimersAndBuffsConfig.GROUP, "showVengeanceActive", Boolean.class);
+		final Boolean vengeanceCooldown = configManager.getConfiguration(TimersAndBuffsConfig.GROUP, "showVengeance", Boolean.class);
+		migrateSpellValues(new String[]{"showVengeanceActive", "showVengeance"},
+			vengeanceEffect, vengeanceCooldown,
+			new String[]{"showVengeanceSpell"});
 	}
 
 	private void migrateSpellValues(String[] oldKeys, Boolean oldEffect, Boolean oldCooldown, String[] newKeys)

@@ -259,25 +259,14 @@ public interface TimersAndBuffsConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "showVengeance",
-		name = "Vengeance timer",
-		description = "Configures whether vengeance and vengeance other timer is displayed",
+		keyName = "showVengeanceSpell",
+		name = "Vengeance",
+		description = "Whether to show the vengeance buff and vengeance/vengeance other cooldown timer.",
 		section = spellsSection
 	)
-	default boolean showVengeance()
+	default SpellEffectCD showVengeanceSpell()
 	{
-		return true;
-	}
-
-	@ConfigItem(
-		keyName = "showVengeanceActive",
-		name = "Vengeance active",
-		description = "Configures whether an indicator for vengeance being active is displayed",
-		section = spellsSection
-	)
-	default boolean showVengeanceActive()
-	{
-		return true;
+		return SpellEffectCD.BOTH;
 	}
 
 	@ConfigItem(
