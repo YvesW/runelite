@@ -148,7 +148,7 @@ public interface BankConfig extends Config
 	@ConfigItem(
 		keyName = "blockJagexAccountAd",
 		name = "Block Jagex Account popup",
-		description = "Blocks the weekly reminder to migrate to a Jagex Account.",
+		description = "Blocks the weekly reminder to migrate to a Jagex account.",
 		position = 11
 	)
 	default boolean blockJagexAccountAd()

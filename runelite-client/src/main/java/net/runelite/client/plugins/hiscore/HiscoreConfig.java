@@ -35,7 +35,7 @@ public interface HiscoreConfig extends Config
 		position = 1,
 		keyName = "playerOption",
 		name = "Player option",
-		description = "Add lookup option to players."
+		description = "Add Lookup option to players."
 	)
 	default boolean playerOption()
 	{
@@ -46,7 +46,7 @@ public interface HiscoreConfig extends Config
 		position = 2,
 		keyName = "menuOption",
 		name = "Menu option",
-		description = "Show lookup option in menus."
+		description = "Show Lookup option in menus."
 	)
 	default boolean menuOption()
 	{

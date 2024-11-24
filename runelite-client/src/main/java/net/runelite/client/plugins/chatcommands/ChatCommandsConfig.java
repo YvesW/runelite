@@ -93,7 +93,7 @@ public interface ChatCommandsConfig extends Config
 		position = 5,
 		keyName = "pb",
 		name = "PB command",
-		description = "Configures whether the personal best command is enabled: !pb"
+		description = "Configures whether the personal best command is enabled: !pb [boss]"
 	)
 	default boolean pb()
 	{
@@ -181,7 +181,7 @@ public interface ChatCommandsConfig extends Config
 		position = 13,
 		keyName = "pets",
 		name = "Pets command",
-		description = "Configures whether the player pet list command is enabled. Update your pet list by looking at the \"All Pets\" tab in the collection log."
+		description = "Configures whether the player pet list command is enabled. Update your pet list by looking at the 'All Pets' tab in the collection log."
 	)
 	default boolean pets()
 	{
@@ -214,7 +214,7 @@ public interface ChatCommandsConfig extends Config
 		position = 20,
 		keyName = "clearSingleWord",
 		name = "Clear single word",
-		description = "Enable hot key to clear single word at a time."
+		description = "Enable hotkey to clear single word at a time."
 	)
 	default Keybind clearSingleWord()
 	{

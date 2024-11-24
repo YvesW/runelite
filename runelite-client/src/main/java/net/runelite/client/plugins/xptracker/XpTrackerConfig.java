@@ -67,7 +67,7 @@ public interface XpTrackerConfig extends Config
 		position = 2,
 		keyName = "intermediateLevelMarkers",
 		name = "Show intermediate level markers",
-		description = "Marks intermediate levels on the progressbar."
+		description = "Marks intermediate levels on the progress bar."
 	)
 	default boolean showIntermediateLevels()
 	{
@@ -78,7 +78,7 @@ public interface XpTrackerConfig extends Config
 		position = 3,
 		keyName = "pauseSkillAfter",
 		name = "Auto pause after",
-		description = "Configures how many minutes passes before pausing a skill while in game and there's no xp, 0 means disabled."
+		description = "Configures how many minutes passes before pausing a skill while in game and there's no XP, 0 means disabled."
 	)
 	@Units(Units.MINUTES)
 	default int pauseSkillAfter()
@@ -90,7 +90,7 @@ public interface XpTrackerConfig extends Config
 		position = 4,
 		keyName = "resetSkillRateAfter",
 		name = "Auto reset after",
-		description = "Configures how many minutes passes before resetting a skill's per hour rates while in game and there's no xp, 0 means disabled."
+		description = "Configures how many minutes passes before resetting a skill's per hour rates while in game and there's no XP, 0 means disabled."
 	)
 	@Units(Units.MINUTES)
 	default int resetSkillRateAfter()
@@ -205,7 +205,7 @@ public interface XpTrackerConfig extends Config
 		position = 14,
 		keyName = "prioritizeRecentXpSkills",
 		name = "Move recently trained skills to top",
-		description = "Configures whether skills should be organized by most recently gained xp."
+		description = "Configures whether skills should be organized by most recently gained XP."
 	)
 	default boolean prioritizeRecentXpSkills()
 	{

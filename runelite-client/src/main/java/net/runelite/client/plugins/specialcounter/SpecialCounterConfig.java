@@ -93,7 +93,7 @@ public interface SpecialCounterConfig extends Config
 		position = 3,
 		keyName = "defenceDrainInfobox",
 		name = "Show defence drain infobox",
-		description = "If infoboxes are enabled, adds a defence drain percentage infobox for dragon warhammer and elder maul."
+		description = "If infoboxes are enabled, adds a defence drain percentage infobox for Dragon warhammer and Elder maul."
 	)
 	default boolean defenceDrainInfobox()
 	{
@@ -104,7 +104,7 @@ public interface SpecialCounterConfig extends Config
 		position = 10,
 		keyName = "dragonWarhammerThreshold",
 		name = "Dragon warhammer",
-		description = "Threshold for dragon warhammer (0 to disable)."
+		description = "Threshold for Dragon warhammer (0 to disable)."
 	)
 	default int dragonWarhammerThreshold()
 	{
@@ -115,7 +115,7 @@ public interface SpecialCounterConfig extends Config
 		position = 15,
 		keyName = "elderMaulThreshold",
 		name = "Elder maul",
-		description = "Threshold for elder maul (0 to disable)."
+		description = "Threshold for Elder maul (0 to disable)."
 	)
 	default int elderMaulThreshold()
 	{
@@ -126,7 +126,7 @@ public interface SpecialCounterConfig extends Config
 		position = 20,
 		keyName = "arclightThreshold",
 		name = "Arclight",
-		description = "Threshold for arclight (0 to disable)."
+		description = "Threshold for Arclight (0 to disable)."
 	)
 	default int arclightThreshold()
 	{
@@ -137,7 +137,7 @@ public interface SpecialCounterConfig extends Config
 		position = 30,
 		keyName = "darklightThreshold",
 		name = "Darklight",
-		description = "Threshold for darklight (0 to disable)."
+		description = "Threshold for Darklight (0 to disable)."
 	)
 	default int darklightThreshold()
 	{
@@ -148,7 +148,7 @@ public interface SpecialCounterConfig extends Config
 		position = 31,
 		keyName = "emberlightThreshold",
 		name = "Emberlight",
-		description = "Threshold for emberlight (0 to disable)."
+		description = "Threshold for Emberlight (0 to disable)."
 	)
 	default int emberlightThreshold()
 	{
@@ -159,7 +159,7 @@ public interface SpecialCounterConfig extends Config
 		position = 40,
 		keyName = "bandosGodswordThreshold",
 		name = "Bandos godsword",
-		description = "Threshold for bandos godsword (0 to disable)."
+		description = "Threshold for Bandos godsword (0 to disable)."
 	)
 	default int bandosGodswordThreshold()
 	{
@@ -170,7 +170,7 @@ public interface SpecialCounterConfig extends Config
 		position = 50,
 		keyName = "bulwarkThreshold",
 		name = "Dinh's bulwark",
-		description = "Threshold for dinh's bulwark (0 to disable)."
+		description = "Threshold for Dinh's bulwark (0 to disable)."
 	)
 	default int bulwarkThreshold()
 	{

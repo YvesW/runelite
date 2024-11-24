@@ -128,7 +128,7 @@ public interface GpuPluginConfig extends Config
 	@ConfigItem(
 		keyName = "useComputeShaders",
 		name = "Compute shaders",
-		description = "Offloads face sorting to gpu. Requires plugin restart.",
+		description = "Offloads face sorting to GPU. Requires plugin restart.",
 		warning = "This feature requires OpenGL 4.3 to use. Please check that your GPU supports this.\nRestart the plugin for changes to take effect.",
 		position = 6
 	)
@@ -206,7 +206,7 @@ public interface GpuPluginConfig extends Config
 	@ConfigItem(
 		keyName = "fpsTarget",
 		name = "FPS target",
-		description = "Target FPS when unlock FPS is enabled and vsync mode is off.",
+		description = "Target FPS when 'Unlock FPS' is enabled and 'Vsync mode' is off.",
 		position = 12
 	)
 	@Range(

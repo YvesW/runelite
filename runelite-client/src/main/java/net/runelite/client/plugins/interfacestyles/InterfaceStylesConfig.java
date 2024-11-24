@@ -100,7 +100,7 @@ public interface InterfaceStylesConfig extends Config
 	@ConfigItem(
 		keyName = "condensePlayerOptions",
 		name = "Condense player options",
-		description = "Move player options like follow and trade with to submenus."
+		description = "Move player options like Follow and Trade with to submenus."
 	)
 	default boolean condensePlayerOptions()
 	{

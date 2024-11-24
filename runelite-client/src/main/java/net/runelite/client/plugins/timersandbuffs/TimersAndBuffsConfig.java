@@ -371,7 +371,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showAbyssalSireStun",
 		name = "Abyssal sire stun timer",
-		description = "Configures whether abyssal sire stun timer is displayed.",
+		description = "Configures whether the Abyssal sire stun timer is displayed.",
 		section = bossesSection
 	)
 	default boolean showAbyssalSireStun()
@@ -459,7 +459,7 @@ public interface TimersAndBuffsConfig extends Config
 	@ConfigItem(
 		keyName = "showColosseumDoom",
 		name = "Colosseum doom buff",
-		description = "Configures whether fortis colosseum doom buff is displayed.",
+		description = "Configures whether Fortis Colosseum doom buff is displayed.",
 		section = bossesSection
 	)
 	default boolean showColosseumDoom()
@@ -474,17 +474,6 @@ public interface TimersAndBuffsConfig extends Config
 		section = consumablesSection
 	)
 	default boolean showMoonlightPotion()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-		keyName = "showScurriusFoodPile",
-		name = "Scurrius food pile",
-		description = "Configures whether Scurrius food pile timer is displayed",
-		section = bossesSection
-	)
-	default boolean showScurriusFoodPile()
 	{
 		return true;
 	}

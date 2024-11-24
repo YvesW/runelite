@@ -62,7 +62,7 @@ public interface GroundMarkerConfig extends Config
 	@ConfigItem(
 		keyName = SHOW_IMPORT_EXPORT_KEY_NAME,
 		name = "Show import/export/clear options",
-		description = "Show the import, export, and clear options on the world map right-click menu."
+		description = "Show the Import, Export, and Clear options on the world map orb right-click menu."
 	)
 	default boolean showImportExport()
 	{

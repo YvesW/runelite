@@ -57,7 +57,7 @@ public interface GroundItemsConfig extends Config
 	@ConfigItem(
 		keyName = "highlightedItems",
 		name = "Highlighted items",
-		description = "Configures specifically highlighted ground items. Format: (item), (item).",
+		description = "Configures specifically highlighted ground items. Format: item1, item2, item3",
 		position = 0,
 		section = itemLists
 	)
@@ -76,7 +76,7 @@ public interface GroundItemsConfig extends Config
 	@ConfigItem(
 		keyName = "hiddenItems",
 		name = "Hidden items",
-		description = "Configures hidden ground items. Format: (item), (item).",
+		description = "Configures hidden ground items. Format: item1, item2, item3",
 		position = 1,
 		section = itemLists
 	)
@@ -227,7 +227,7 @@ public interface GroundItemsConfig extends Config
 	@ConfigItem(
 		keyName = "hideUnderValue",
 		name = "Hide under value",
-		description = "Configures hidden ground items under both GE and ha value.",
+		description = "Configures hidden ground items under both GE and HA value.",
 		position = 13
 	)
 	default int getHideUnderValue()
@@ -377,7 +377,7 @@ public interface GroundItemsConfig extends Config
 	@ConfigItem(
 		keyName = "doubleTapDelay",
 		name = "Double-tap delay",
-		description = "Delay for the double-tap alt to hide ground items. 0 to disable.",
+		description = "Delay for the double-tap ALT to hide ground items. 0 to disable.",
 		position = 26
 	)
 	@Units(Units.MILLISECONDS)
@@ -455,7 +455,7 @@ public interface GroundItemsConfig extends Config
 	@ConfigItem(
 		keyName = "hotkey",
 		name = "Hotkey",
-		description = "Configures the hotkey used by the ground items plugin.",
+		description = "Configures the hotkey used by the Ground Items plugin.",
 		position = 33
 	)
 	default Keybind hotkey()

@@ -37,7 +37,7 @@ public interface LootTrackerConfig extends Config
 
 	@ConfigSection(
 		name = "Ignored entries",
-		description = "The ignore items and ignore groups options.",
+		description = "The ignored items and sources.",
 		position = -2,
 		closedByDefault = true
 	)
@@ -94,7 +94,7 @@ public interface LootTrackerConfig extends Config
 	@ConfigItem(
 		keyName = "ignoredEvents",
 		name = "Ignored loot sources",
-		description = "Hide specific NPCs or sources of loot in the loot tracker (e.g., goblin, barrows chest, H.A.M. Member).",
+		description = "Hide specific NPCs or sources of loot in the loot tracker (e.g., goblin, barrows chest, H.A.M. member).",
 		section = ignored
 	)
 	default String getIgnoredEvents()

@@ -89,7 +89,7 @@ public interface ItemPricesConfig extends Config
 	@ConfigItem(
 		keyName = "showWhileAlching",
 		name = "Show prices while alching",
-		description = "Show the price overlay while using high alchemy. Takes priority over \"Hide tooltips on inventory items\"",
+		description = "Show the price overlay while using high alchemy. Takes priority over 'Hide tooltips on inventory items'",
 		position = 6
 	)
 	default boolean showWhileAlching()

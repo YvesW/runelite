@@ -47,7 +47,7 @@ public interface XpDropConfig extends Config
 	@ConfigItem(
 		keyName = "standardColor",
 		name = "Standard color",
-		description = "Xp drop color when no prayer is active.",
+		description = "XP drop color when no prayer is active.",
 		position = 1
 	)
 	Color standardColor();
@@ -55,7 +55,7 @@ public interface XpDropConfig extends Config
 	@ConfigItem(
 		keyName = "meleePrayerColor",
 		name = "Melee prayer color",
-		description = "Xp drop color when a melee prayer is active.",
+		description = "XP drop color when a melee prayer is active.",
 		position = 2
 	)
 	default Color getMeleePrayerColor()
@@ -66,7 +66,7 @@ public interface XpDropConfig extends Config
 	@ConfigItem(
 		keyName = "rangePrayerColor",
 		name = "Range prayer color",
-		description = "Xp drop color when a range prayer is active.",
+		description = "XP drop color when a range prayer is active.",
 		position = 3
 	)
 	default Color getRangePrayerColor()
@@ -77,7 +77,7 @@ public interface XpDropConfig extends Config
 	@ConfigItem(
 		keyName = "magePrayerColor",
 		name = "Mage prayer color",
-		description = "Xp drop color when a mage prayer is active.",
+		description = "XP drop color when a mage prayer is active.",
 		position = 4
 	)
 	default Color getMagePrayerColor()

@@ -45,7 +45,7 @@ public interface ChatHistoryConfig extends Config
 	@ConfigItem(
 		keyName = "pmTargetCycling",
 		name = "PM target cycling",
-		description = "Pressing tab while sending a pm will cycle the target username based on pm history.",
+		description = "Pressing tab while sending a PM will cycle the target username based on PM history.",
 		position = 1
 	)
 	default boolean pmTargetCycling()
@@ -67,7 +67,7 @@ public interface ChatHistoryConfig extends Config
 	@ConfigItem(
 		keyName = "clearHistory",
 		name = "Clear history option for all tabs",
-		description = "Add 'clear history' option chatbox tab buttons.",
+		description = "Add 'Clear history' option chatbox tab buttons.",
 		position = 3
 	)
 	default boolean clearHistory()

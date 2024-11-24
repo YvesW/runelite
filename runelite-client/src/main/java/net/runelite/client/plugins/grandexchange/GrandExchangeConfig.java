@@ -82,7 +82,7 @@ public interface GrandExchangeConfig extends Config
 		position = 4,
 		keyName = "enableGeLimits",
 		name = "Enable GE limits on GE",
-		description = "Shows the GE limits on the ge."
+		description = "Shows the GE limits on the GE."
 	)
 	default boolean enableGELimits()
 	{

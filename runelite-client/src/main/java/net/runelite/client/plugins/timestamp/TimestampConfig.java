@@ -38,7 +38,7 @@ public interface TimestampConfig extends Config
 		keyName = "opaqueTimestamp",
 		name = "Timestamps (opaque)",
 		position = 1,
-		description = "Colour of timestamps from the timestamps plugin (opaque)."
+		description = "Colour of timestamps from the Timestamps plugin (opaque)."
 	)
 	Color opaqueTimestamp();
 
@@ -46,7 +46,7 @@ public interface TimestampConfig extends Config
 		keyName = "transparentTimestamp",
 		name = "Timestamps (transparent)",
 		position = 2,
-		description = "Colour of timestamps from the timestamps plugin (transparent)."
+		description = "Colour of timestamps from the Timestamps plugin (transparent)."
 	)
 	Color transparentTimestamp();
 

@@ -103,7 +103,7 @@ public interface XpGlobesConfig extends Config
 	@ConfigItem(
 		keyName = "showVirtualLevel",
 		name = "Show virtual level",
-		description = "Shows virtual level if over 99 in a skill and hide maxed skill is not checked.",
+		description = "Shows virtual level if over 99 in a skill and 'Hide maxed skills' is not checked.",
 		position = 15
 	)
 	default boolean showVirtualLevel()

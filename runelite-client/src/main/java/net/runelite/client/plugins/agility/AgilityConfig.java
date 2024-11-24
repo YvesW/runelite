@@ -239,7 +239,7 @@ public interface AgilityConfig extends Config
 	@ConfigItem(
 		keyName = "highlightSepulchreNpcs",
 		name = "Highlight projectiles",
-		description = "Highlights arrows and swords in the sepulchre.",
+		description = "Highlights arrows and swords in the Sepulchre.",
 		position = 17,
 		section = sepulchreSection
 	)
@@ -264,7 +264,7 @@ public interface AgilityConfig extends Config
 	@ConfigItem(
 		keyName = "highlightSepulchreObstacles",
 		name = "Highlight obstacles",
-		description = "Highlights pillars and stairs in the sepulchre.",
+		description = "Highlights pillars and stairs in the Sepulchre.",
 		position = 19,
 		section = sepulchreSection
 	)
@@ -276,7 +276,7 @@ public interface AgilityConfig extends Config
 	@ConfigItem(
 		keyName = "highlightSepulchreSkilling",
 		name = "Highlight skill challenges",
-		description = "Highlights skilling challenges in the sepulchre.",
+		description = "Highlights skilling challenges in the Sepulchre.",
 		position = 20,
 		section = sepulchreSection
 	)

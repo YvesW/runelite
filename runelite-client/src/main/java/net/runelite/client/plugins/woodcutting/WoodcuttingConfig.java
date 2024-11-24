@@ -91,7 +91,7 @@ public interface WoodcuttingConfig extends Config
 		position = 5,
 		keyName = "showRedwoods",
 		name = "Show Redwood trees",
-		description = "Configures whether to show a indicator for Redwood trees."
+		description = "Configures whether to show a indicator for redwood trees."
 	)
 	default boolean showRedwoodTrees()
 	{
@@ -116,9 +116,9 @@ public interface WoodcuttingConfig extends Config
 		description = "Configures whether to notify you of a leprechaun event.",
 		section = forestrySection
 	)
-	default Notification forestryLeprechaunNotification()
+	default boolean forestryLeprechaunNotification()
 	{
-		return Notification.ON;
+		return true;
 	}
 
 	@ConfigItem(

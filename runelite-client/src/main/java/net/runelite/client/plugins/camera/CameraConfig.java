@@ -161,7 +161,7 @@ public interface CameraConfig extends Config
 	@ConfigItem(
 		keyName = "rightClickObjects",
 		name = "Right click objects",
-		description = "Right clicking objects opens the menu when 'right click moves camera' is on.",
+		description = "Right clicking objects opens the menu when 'Right click moves camera' is on.",
 		position = 8,
 		section = mouseSettingsSection
 	)
@@ -173,7 +173,7 @@ public interface CameraConfig extends Config
 	@ConfigItem(
 		keyName = "rightClickExamine",
 		name = "Right click examine",
-		description = "Right clicking examinable objects opens the menu when 'right click moves camera' is on.",
+		description = "Right clicking examinable objects opens the menu when 'Right click moves camera' is on.",
 		position = 9,
 		section = mouseSettingsSection
 	)
