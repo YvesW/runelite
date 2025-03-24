@@ -615,7 +615,7 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarTimer(MOONLIGHT_POTION, moonlightValue, IntUnaryOperator.identity());
 		}
 
-		if (event.getVarbitId() == Varbits.STONE_OF_JAS_EMPOWERMENT && config.showOverload())
+		if (event.getVarbitId() == Varbits.STONE_OF_JAS_EMPOWERMENT && config.showStoneOfJasEffect())
 		{
 			updateVarCounter(STONE_OF_JAS_EMPOWERMENT, event.getValue());
 		}
@@ -630,12 +630,12 @@ public class TimersAndBuffsPlugin extends Plugin
 			updateVarCounter(BURN_DAMAGE_NEXT_HIT, event.getValue());
 		}
 
-		if (event.getVarbitId() == Varbits.SMOULDERING_HEART && config.showOverload())
+		if (event.getVarbitId() == Varbits.SMOULDERING_HEART && config.showSmoulderingHeartDuration())
 		{
 			updateVarTimer(SMOULDERING_HEART, event.getValue(), i -> i * 25);
 		}
 
-		if (event.getVarbitId() == Varbits.SMOULDERING_GLAND && config.showPrayerEnhance())
+		if (event.getVarbitId() == Varbits.SMOULDERING_GLAND && config.showSmoulderingGlandDuration())
 		{
 			updateVarTimer(SMOULDERING_GLAND, event.getValue(), i -> i * 4);
 		}
